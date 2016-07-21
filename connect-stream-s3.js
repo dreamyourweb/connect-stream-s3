@@ -34,10 +34,10 @@ module.exports = function(options) {
     //     'region'          : region,
     // };
     // var s3 = new S3(cred);
-    AWS.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey});
-    AWS.config.update({region: region});
+    // AWS.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey});
+    // AWS.config.update({region: region});
 
-    s3 = new AWS.S3({ params: {Bucket: bucketName} });
+    s3 = new AWS.S3({ params: {Bucket: bucketName}, accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region });
 
     return function handler(req, res, next) {
         // check files have been uploaded
