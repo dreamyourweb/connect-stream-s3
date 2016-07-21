@@ -1,35 +1,23 @@
 {
-    "name" : "connect-stream-s3",
+    "name" : "connect-stream-s3-orikami",
     "description" : "Streaming connect middleware for uploading files to Amazon S3.",
-    "version" : "0.7.2",
+    "version" : "0.7.3",
     "author" : {
-        "name" : "Andrew Chilton",
-        "email" : "andychilton@gmail.com",
-        "url" : "http://chilts.org/"
+        "name" : "Stijn Albers van der Linden"
     },
-    "homepage" : "https://github.com/appsattic/connect-stream-s3",
-    "contributors" : [
-        {
-            "name": "John Keyes",
-            "email": "john@keyes.ie"
-        }
-    ],
+    "homepage" : "https://github.com/dreamyourweb/connect-stream-s3",
     "devDependencies" : {
         "vows": "0.7.0"
     },
     "dependencies": {
-      "awssum-amazon-s3": "1.1.x",
+      "aws-sdk": "2.4.x",
       "async": ">= 0.1.22"
     },
     "main" : "connect-stream-s3.js",
     "engines" : { "node": "*" },
     "repository" : {
         "type" : "git",
-        "url": "git://github.com/appsattic/connect-stream-s3.git"
-    },
-   "bugs" : {
-        "url" : "http://github.com/appsattic/connect-stream-s3/issues",
-        "mail" : "chilts@appsattic.com"
+        "url": "git://github.com/dreamyourweb/connect-stream-s3.git"
     },
     "licenses" : [{
         "type": "MIT",

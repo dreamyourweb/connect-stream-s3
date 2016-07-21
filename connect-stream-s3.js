@@ -12,8 +12,8 @@
 var fs = require('fs');
 
 var async = require('async');
-var amazonS3 = require('awssum-amazon-s3');
-var S3 = amazonS3.S3;
+var AWS = require('aws-sdk');
+// var S3 = amazonS3.S3;
 
 module.exports = function(options) {
     options = options || {};
@@ -27,13 +27,17 @@ module.exports = function(options) {
     var concurrency     = options.concurrency || 3;
 
     // create the S3 API
-    var cred = {
-        'accessKeyId'     : accessKeyId,
-        'secretAccessKey' : secretAccessKey,
-        'awsAccountId'    : awsAccountId,
-        'region'          : region,
-    };
-    var s3 = new S3(cred);
+    // var cred = {
+    //     'accessKeyId'     : accessKeyId,
+    //     'secretAccessKey' : secretAccessKey,
+    //     'awsAccountId'    : awsAccountId,
+    //     'region'          : region,
+    // };
+    // var s3 = new S3(cred);
+    AWS.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey});
+    AWS.config.update({region: region});
+
+    s3 = new AWS.S3({ params: {Bucket: bucketName} });
 
     return function handler(req, res, next) {
         // check files have been uploaded
@@ -61,8 +65,8 @@ module.exports = function(options) {
 
             // create the data for s3.PutObject()
             var data = {
-                'BucketName'    : bucketName,
-                'ObjectName'    : fileInfo.s3ObjectName,
+                'Bucket'        : bucketName,
+                'Key'           : fileInfo.s3ObjectName,
                 'ContentLength' : fileInfo.size,
                 'ContentType'   : fileInfo.type || 'binary/octet-stream',
                 'Body'          : bodyStream
