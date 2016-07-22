@@ -37,7 +37,7 @@ module.exports = function(options) {
     // AWS.config.update({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey});
     // AWS.config.update({region: region});
 
-    s3 = new AWS.S3({ params: {Bucket: bucketName}, accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region });
+    s3 = new AWS.S3({accessKeyId: accessKeyId, secretAccessKey: secretAccessKey, region: region, apiVersion: '2006-03-01' });
 
     return function handler(req, res, next) {
         // check files have been uploaded
